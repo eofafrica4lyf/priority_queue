@@ -1,6 +1,7 @@
 const db = require('../db');
-
+// Define a global variable to help with auto-incrementation of ID of loan records
 global.bookId = 1;
+// Constructor function that initializes the process of borrowing a book by a user
 const Borrow = function (lenderId, booksBorrowed){
   this.lenderId = lenderId;
   this.timeOfLoan = new Date().toLocaleTimeString();

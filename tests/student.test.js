@@ -38,8 +38,14 @@ describe('Borrowing a Book',function(){
   it('Test that a book was borrowed',function(){
     Ola.borrow(['Book2']);
     Uncle.borrow(['Book1']);
-    console.log(db);
-    // expect(db.books.Book2).toEqual(1);
+    // console.log(db);
+    expect(db.books.Book2).toEqual(1);
     expect(Ola.borrowedBooks).toEqual(['Book2']);  
   });
+  it('Test that a teacher has greater priority than a student',function (){
+    console.log(db);
+    Ola.borrow(['Book4']);
+    Uncle.borrow(['Book4']);
+    expect(Uncle.borrowedBooks).toContain('Book4');
+  })
 });

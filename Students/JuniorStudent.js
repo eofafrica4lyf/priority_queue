@@ -1,6 +1,6 @@
 const db = require('../db')
 const Borrow = require('../Borrow/Borrow.js');
-
+// Define a global variable to help with auto-incrementation of student ID
 global.counter = 1;
 
 const JuniorStudent = function (name,address,email,password){
@@ -12,6 +12,7 @@ const JuniorStudent = function (name,address,email,password){
   this.cadre = 'JuniorStudent';
   this.Id = global.counter;
   counter++;
+  // add new records of new student to database 
   db.people.push({
     'name': this.name,
     'address': this.address,
@@ -21,19 +22,27 @@ const JuniorStudent = function (name,address,email,password){
     'studentId': this.Id
   });
 }
- JuniorStudent.prototype.borrow = function (booksBorrowed) {
+/* Initiate the borrowing of a book from the library
+* params: take an array corresponding to the list of books to be borrowed
+*/ 
+JuniorStudent.prototype.borrow = function (booksBorrowed) {
+  // First, check if the book is available
   if(db.books[booksBorrowed[0]] >= 1){
+    // initiate the loan
     var loan = new Borrow(this.Id, booksBorrowed);
-  var priority = 0;
-   if(this.cadre === 'JuniorStudent'){
+    // The priority variable determines who gets a book first.
+    var priority = 0;
+    if(this.cadre === 'JuniorStudent'){
      priority = 1;
-   }else if(this.cadre === 'SeniorStudent'){
+    }else if(this.cadre === 'SeniorStudent'){
     priority = 2;
-  }if(this.cadre === 'Teacher'){
+    }else if(this.cadre === 'Teacher'){
     priority = 3;
-  }
+    }
+    // add the record of priority for the loan request; which was formerly not there.
    loan.priority = priority;
-   console.log(loan);
+  //  console.log(loan);
+  // add records of the book request to the database
    db.bookRequests.push({
      'lenderId': loan.lenderId,
      'timeOfLoan': loan.timeOfLoan,
@@ -42,15 +51,16 @@ const JuniorStudent = function (name,address,email,password){
      'priority': priority,
      'loanId': loan.loanId
    });
-   // Remove the book from the database
+   // Loan request is granted and records are updated
    db.books[booksBorrowed[0]]--;
-   // Add the book to the object of the student
+   // The newly borrowed book is added to the records of the person.
    this.borrowedBooks.push(booksBorrowed[0]);
-
-   console.log(db);
+   // The records of the book request are removed since they have been evaluated
+  //  console.log(db);
 
    return loan;
   }else {
+    // if the book count of the particular book is zero then return 'book taken'
     return 'book taken';
   } 
   
