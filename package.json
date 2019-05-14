@@ -1,0 +1,26 @@
+{
+  "name": "priority_queue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eofafrica4lyf/priority_queue.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eofafrica4lyf/priority_queue/issues"
+  },
+  "homepage": "https://github.com/eofafrica4lyf/priority_queue#readme",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
+}
