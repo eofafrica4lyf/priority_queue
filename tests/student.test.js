@@ -33,3 +33,10 @@ describe('Student/Teacher creation',function(){
     expect(Uncle.constructor).toEqual(Teacher); 
   });
 });
+
+describe('Borrowing a Book',function(){
+  it('Test that a book was borrowed',function(){
+    Ola.borrow('Book2')
+    expect(db.books.Book2).toEqual(1);
+  });
+});
