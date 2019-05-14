@@ -5,6 +5,6 @@ var obj1 = {name: 'Ola',address:'Lagos', email: 'ola@gmail.com',password: 'qwert
 
 describe('Student creation',function(){
   it('Test that a student is created',function(){
-    expect(Ola).toBe(obj1);
+    expect(Ola).toEqual(obj1);
   });
 });
