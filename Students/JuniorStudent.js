@@ -8,7 +8,7 @@ const JuniorStudent = function (name,address,email,password){
   this.email = email;
   this.password = password;
   this.borrowedBooks = [];
-  this.studentId = counter;
+  this.Id = counter;
   counter++;
   db.people.push({
     'name': this.name,
@@ -16,7 +16,7 @@ const JuniorStudent = function (name,address,email,password){
     'email': this.email,
     'password': this.password,
     'borrowedBooks': this.borrowedBooks,
-    'studentId': this.studentId
+    'studentId': this.Id
   });
 
 }
