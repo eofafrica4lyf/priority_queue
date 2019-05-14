@@ -42,6 +42,13 @@ const JuniorStudent = function (name,address,email,password){
      'priority': priority,
      'loanId': loan.loanId
    });
+   // Remove the book from the database
+   db.books[booksBorrowed[0]]--;
+   // Add the book to the object of the student
+   this.borrowedBooks.push(booksBorrowed[0]);
+
+   console.log(db);
+
    return loan;
   }else {
     return 'book taken';
