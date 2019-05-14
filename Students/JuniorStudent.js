@@ -2,7 +2,7 @@ const db = require('../db')
 
 global.counter = 1;
 
-const juniorStudent = function (name,address,email,password){
+const JuniorStudent = function (name,address,email,password){
   this.name = name;
   this.address = address;
   this.email = email;
@@ -20,6 +20,6 @@ const juniorStudent = function (name,address,email,password){
   });
 
 }
-// console.log(juniorStudent.getPrototypeOf());
-// console.log(new juniorStudent('Ola','Lagos','ola@gmail.com','qwerty','J'));
-module.exports = juniorStudent;
+// console.log(JuniorStudent.getPrototypeOf());
+// console.log(new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty','J'));
+module.exports = JuniorStudent;
