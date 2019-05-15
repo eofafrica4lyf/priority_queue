@@ -149,7 +149,10 @@ describe('Deleting records of people', function (){
 });
 
 describe('Search for a person', function () {
-  it('Admin searches through all user names ', function (){
-    expect(Admin.search('Ola').name).toContain(obj1);
+  it('Admin searches through the database for records', function (){
+    console.log(db);
+    expect(Admin.search('Ola').length).toBe(1);
+    expect(Admin.search('Ol').length).toBe(2); 
+    expect(Admin.search('ja').length).toBe(2); 
   })
 })

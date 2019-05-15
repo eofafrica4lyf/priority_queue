@@ -19,6 +19,7 @@ const JuniorStudent = function (name,address,email,password){
     'email': this.email,
     'password': this.password,
     'borrowedBooks': this.borrowedBooks,
+    'cadre': this.cadre,
     'id': this.Id
   });
 }
@@ -86,6 +87,20 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
     db.people.length = 0;
     global.counter = 1
   }
+ }
+
+ JuniorStudent.prototype.search = function(searchTerm){
+  var regex = new RegExp(searchTerm);
+  var searchResult = [];
+  console.log(searchTerm,regex);
+  for(index = 0; index < db.people.length; index++){
+    console.log(regex.test(db.people[index].name), db.people[index].name);
+    if(regex.test(db.people[index].name) || regex.test(db.people[index].address) || regex.test(db.people[index].email)){
+      searchResult.push(db.people[index]);
+    }
+  }
+  console.log(searchResult);
+  return searchResult;
  }
 // console.log(JuniorStudent.getPrototypeOf());
 // console.log(new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty','J'));
