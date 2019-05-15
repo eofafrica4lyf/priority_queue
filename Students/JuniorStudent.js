@@ -65,10 +65,14 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
  }
 
  JuniorStudent.prototype.update = function (ID, newRecord){
-   var record = this.get(ID);
-   for(data in newRecord){
-     record[data] = newRecord[data];
-   }
+  if (this.cadre === 'Librarian'){
+    var record = this.get(ID);
+    for(data in newRecord){
+        record[data] = newRecord[data];
+    }
+  }else{
+    return 'You do not have enough privileges';
+  }
  }
 // console.log(JuniorStudent.getPrototypeOf());
 // console.log(new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty','J'));
