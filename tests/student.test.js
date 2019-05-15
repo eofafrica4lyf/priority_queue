@@ -12,10 +12,10 @@ var Olu = new SeniorStudent('Olu','Abuja','olu@gmail.com','qwerty1');
 var obj2 = {name: 'Olu',address:'Abuja', email: 'olu@gmail.com',password: 'qwerty1',borrowedBooks: [],'cadre': 'SeniorStudent',Id: 2};
 //Teacher
 var Uncle = new Teacher('Uncle','Lokoja','uncle@gmail.com','qwerty2');
-var obj3 = {name: 'Uncle',address:'Lokoja', email: 'uncle@gmail.com',password: 'qwerty2',borrowedBooks: [],'cadre': 'Teacher',Id: 3}
+var obj3 = {name: 'Uncle',address:'Lokoja', email: 'uncle@gmail.com',password: 'qwerty2',borrowedBooks: [],'cadre': 'Teacher',Id: 3};
 //Admin
 var Admin = new Librarian('Admin','Library','admin@gmail.com','jyndiqhxqi');
-var obj4 = {name: 'Admin',address:'Library', email: 'admin@gmail.com',password: 'jyndiqhxqi',borrowedBooks: [],'cadre': 'Librarian',Id: 4}
+var obj4 = {name: 'Admin',address:'Library', email: 'admin@gmail.com',password: 'jyndiqhxqi',borrowedBooks: [],'cadre': 'Librarian',Id: 4};
 
 
 describe('Student/Teacher creation',function(){
@@ -124,7 +124,26 @@ describe('Deleting records of people', function (){
     expect(Admin.get(2).name).toBe('Olu'); 
   });
   it('Librarian deletes all the records of people, but other users cannot ', function (){
+    // console.log(db);
     Admin.deleteAll();
     expect(db.people.length).toBe(0);
+  });
+  it('Librarian deletes all the records of people, but other users cannot ', function (){
+    //Junior Student
+    var Ola = new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty');
+    var obj1 = {name: 'Ola',address:'Lagos', email: 'ola@gmail.com',password: 'qwerty',borrowedBooks: [],'cadre': 'JuniorStudent',Id: 1};
+    //Senior Student
+    var Olu = new SeniorStudent('Olu','Abuja','olu@gmail.com','qwerty1');
+    var obj2 = {name: 'Olu',address:'Abuja', email: 'olu@gmail.com',password: 'qwerty1',borrowedBooks: [],'cadre': 'SeniorStudent',Id: 2};
+    //Teacher
+    var Uncle = new Teacher('Uncle','Lokoja','uncle@gmail.com','qwerty2');
+    var obj3 = {name: 'Uncle',address:'Lokoja', email: 'uncle@gmail.com',password: 'qwerty2',borrowedBooks: [],'cadre': 'Teacher',Id: 3};
+    //Admin
+    var Admin = new Librarian('Admin','Library','admin@gmail.com','jyndiqhxqi');
+    var obj4 = {name: 'Admin',address:'Library', email: 'admin@gmail.com',password: 'jyndiqhxqi',borrowedBooks: [],'cadre': 'Librarian',Id: 4};
+    console.log(db);
+    Uncle.deleteAll();
+    console.log(db);
+    expect(db.people.length).toBe(4);
   });
 });
