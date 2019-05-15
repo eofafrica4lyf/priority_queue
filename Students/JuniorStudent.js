@@ -43,14 +43,18 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
    loan.priority = priority;
   //  console.log(loan);
   // add records of the book request to the database
-   db.bookRequests.push({
-     'lenderId': loan.lenderId,
-     'timeOfLoan': loan.timeOfLoan,
-     'dateOfLoan': loan.dateOfLoan,
-     'booksBorrowed': loan.booksBorrowed,
-     'priority': priority,
-     'loanId': loan.loanId
-   });
+      //  db.bookRequests.push({
+      //    'lenderId': loan.lenderId,
+      //    'timeOfLoan': loan.timeOfLoan,
+      //    'dateOfLoan': loan.dateOfLoan,
+      //    'booksBorrowed': loan.booksBorrowed,
+      //    'priority': priority,
+      //    'loanId': loan.loanId
+      //  });
+      // console.log(loan);
+    loan.addRequest();
+  // console.log(loan.addRequest());
+  console.log(db);
    // Loan request is granted and records are updated
    db.books[booksBorrowed[0]]--;
    // The newly borrowed book is added to the records of the person.
@@ -61,6 +65,7 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
    return loan;
   }else {
     // if the book count of the particular book is zero then return 'book taken'
+    console.log('book taken');
     return 'book taken';
   } 
   

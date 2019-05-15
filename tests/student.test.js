@@ -12,6 +12,9 @@ var obj2 = {name: 'Olu',address:'Abuja', email: 'olu@gmail.com',password: 'qwert
 //Teacher
 var Uncle = new Teacher('Uncle','Lokoja','uncle@gmail.com','qwerty2');
 var obj3 = {name: 'Uncle',address:'Lokoja', email: 'uncle@gmail.com',password: 'qwerty2',borrowedBooks: [],'cadre': 'Teacher',Id: 3}
+//Admin
+var Admin
+
 
 describe('Student/Teacher creation',function(){
   it('Test that a junior student is created',function(){
@@ -43,9 +46,11 @@ describe('Borrowing a Book',function(){
     expect(Ola.borrowedBooks).toEqual(['Book2']);  
   });
   it('Test that a teacher has greater priority than a student',function (){
-    console.log(db);
     Ola.borrow(['Book4']);
+    console.log(db.bookRequests[db.bookRequests.length-1].priority);
+    expect(db.bookRequests[db.bookRequests.length-1].priority).toBe(1); 
     Uncle.borrow(['Book4']);
-    expect(Uncle.borrowedBooks).toContain('Book4');
+    
+    expect(db.bookRequests[db.bookRequests.length-1].priority).toBe(1); 
   })
 });
