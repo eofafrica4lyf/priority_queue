@@ -18,6 +18,7 @@ Librarian.prototype.approve = function (){
       db.people[request.lenderId - 1].borrowedBooks.push(request.booksBorrowed[0]);
     }
   }
+  db.bookRequests.length = 0;
 };
 
 
