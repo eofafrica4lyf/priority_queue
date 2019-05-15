@@ -1,44 +1,76 @@
 // require all necessary files
-const db = require('../db')
-const JuniorStudent = require('../Students/JuniorStudent');
-const SeniorStudent = require('../Students/SeniorStudent');
-const Teacher = require('../Teachers/Teacher');
-const Librarian = require('../Librarian/Librarian');
+const db = require("../db");
+const JuniorStudent = require("../Students/JuniorStudent");
+const SeniorStudent = require("../Students/SeniorStudent");
+const Teacher = require("../Teachers/Teacher");
+const Librarian = require("../Librarian/Librarian");
 
 //Junior Student
-var Ola = new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty');
-var obj1 = {name: 'Ola',address:'Lagos', email: 'ola@gmail.com',password: 'qwerty',borrowedBooks: [],'cadre': 'JuniorStudent',Id: 1};
+var Ola = new JuniorStudent("Ola", "Lagos", "ola@gmail.com", "qwerty");
+var obj1 = {
+  name: "Ola",
+  address: "Lagos",
+  email: "ola@gmail.com",
+  password: "qwerty",
+  borrowedBooks: [],
+  cadre: "JuniorStudent",
+  Id: 1
+};
 //Senior Student
-var Olu = new SeniorStudent('Olu','Abuja','olu@gmail.com','qwerty1');
-var obj2 = {name: 'Olu',address:'Abuja', email: 'olu@gmail.com',password: 'qwerty1',borrowedBooks: [],'cadre': 'SeniorStudent',Id: 2};
+var Olu = new SeniorStudent("Olu", "Abuja", "olu@gmail.com", "qwerty1");
+var obj2 = {
+  name: "Olu",
+  address: "Abuja",
+  email: "olu@gmail.com",
+  password: "qwerty1",
+  borrowedBooks: [],
+  cadre: "SeniorStudent",
+  Id: 2
+};
 //Teacher
-var Uncle = new Teacher('Uncle','Lokoja','uncle@gmail.com','qwerty2');
-var obj3 = {name: 'Uncle',address:'Lokoja', email: 'uncle@gmail.com',password: 'qwerty2',borrowedBooks: [],'cadre': 'Teacher',Id: 3};
+var Uncle = new Teacher("Uncle", "Lokoja", "uncle@gmail.com", "qwerty2");
+var obj3 = {
+  name: "Uncle",
+  address: "Lokoja",
+  email: "uncle@gmail.com",
+  password: "qwerty2",
+  borrowedBooks: [],
+  cadre: "Teacher",
+  Id: 3
+};
 //Admin
-var Admin = new Librarian('Admin','Library','admin@gmail.com','jyndiqhxqi');
-var obj4 = {name: 'Admin',address:'Library', email: 'admin@gmail.com',password: 'jyndiqhxqi',borrowedBooks: [],'cadre': 'Librarian',Id: 4};
+var Admin = new Librarian("Admin", "Library", "admin@gmail.com", "jyndiqhxqi");
+var obj4 = {
+  name: "Admin",
+  address: "Library",
+  email: "admin@gmail.com",
+  password: "jyndiqhxqi",
+  borrowedBooks: [],
+  cadre: "Librarian",
+  Id: 4
+};
 
 /**
  * Testing that the creation of each time of person is successful; whether they are Junior Students, Senior Students or Teachers
  */
-describe('Student/Teacher creation',function(){
-  it('Test that a junior student is created',function(){
+describe("Student/Teacher creation", function() {
+  it("Test that a junior student is created", function() {
     expect(Ola).toEqual(obj1);
   });
-  it('Test that a junior student is created',function(){
+  it("Test that a junior student is created", function() {
     expect(Ola.constructor).toEqual(JuniorStudent);
   });
-  it('Test that a senior student is created',function(){
+  it("Test that a senior student is created", function() {
     expect(Olu).toEqual(obj2);
   });
-  it('Test that a senior student is created',function(){
-    expect(Olu.constructor).toEqual(SeniorStudent); 
+  it("Test that a senior student is created", function() {
+    expect(Olu.constructor).toEqual(SeniorStudent);
   });
-  it('Test that a teacher is created',function(){
+  it("Test that a teacher is created", function() {
     expect(Uncle).toEqual(obj3);
   });
-  it('Test that a teacher is created',function(){
-    expect(Uncle.constructor).toEqual(Teacher); 
+  it("Test that a teacher is created", function() {
+    expect(Uncle.constructor).toEqual(Teacher);
   });
 });
 
@@ -46,35 +78,35 @@ describe('Student/Teacher creation',function(){
  * Testing that the borrow process was initialized and that bookRequests are updated in the database and arranged 
  * in the order of priority...
  */
-describe('Borrowing a Book',function(){
-  it('Test that a book was borrowed but Admin has not yet approved',function(){
-    Ola.borrow(['Book2']);
-    Olu.borrow(['Book2']);
-    Uncle.borrow(['Book1']);
+describe("Borrowing a Book", function() {
+  it("Test that a book was borrowed but Admin has not yet approved", function() {
+    Ola.borrow(["Book2"]);
+    Olu.borrow(["Book2"]);
+    Uncle.borrow(["Book1"]);
     // console.log(db);
     // Admin has not yet approved
     expect(db.books.Book2).toEqual(2);
-    expect(Ola.borrowedBooks).not.toEqual(['Book2']);  
+    expect(Ola.borrowedBooks).not.toEqual(["Book2"]);
   });
-  it('Test that a teacher has greater priority than a student',function (){
-    Ola.borrow(['Book4']);
+  it("Test that a teacher has greater priority than a student", function() {
+    Ola.borrow(["Book4"]);
     // console.log(db.bookRequests[db.bookRequests.length-1].priority);
-    expect(db.bookRequests[db.bookRequests.length-1].priority).toBe(1); 
-    Uncle.borrow(['Book4']);
-    
-    expect(db.bookRequests[db.bookRequests.length-1].priority).toBe(1); 
-  })
+    expect(db.bookRequests[db.bookRequests.length - 1].priority).toBe(1);
+    Uncle.borrow(["Book4"]);
+
+    expect(db.bookRequests[db.bookRequests.length - 1].priority).toBe(1);
+  });
 });
 
 /**
  * Test that a Librarian was created.
  */
-describe('Admin Creation', function () {
-  it('Test that we have a librarian', function () {
+describe("Admin Creation", function() {
+  it("Test that we have a librarian", function() {
     expect(Admin).toEqual(obj4);
   });
-  it('Test that a Librarian is created',function(){
-    expect(Admin.constructor).toEqual(Librarian); 
+  it("Test that a Librarian is created", function() {
+    expect(Admin.constructor).toEqual(Librarian);
   });
 });
 
@@ -83,115 +115,154 @@ describe('Admin Creation', function () {
  * of priority(when a teacher is requesting for the same book a student is requesting for, the teacher comes 
  * first and when a junior student is asking for the same book a senior student is asking for, the senior student comes first.)
  */
-describe('Admin Approval', function () {
+describe("Admin Approval", function() {
   // A junior student requests to borrow Book9, then a teacher requests the same book too;
   // Only 1 copy of the book is available; the teacher gets the book after approval
-  it('Admin approves loan requests', function (){
-    Ola.borrow(['Book7']);
-    Uncle.borrow(['Book7']);
+  it("Admin approves loan requests", function() {
+    Ola.borrow(["Book7"]);
+    Uncle.borrow(["Book7"]);
     // console.log(db);
     var numberOfRequests = db.bookRequests.length;
     Admin.approve();
-    expect(Uncle.borrowedBooks).toContain('Book7');
-    expect(Ola.borrowedBooks).not.toContain('Book7');
+    expect(Uncle.borrowedBooks).toContain("Book7");
+    expect(Ola.borrowedBooks).not.toContain("Book7");
     expect(db.bookRequests.length).toBe(0);
     // console.log(db.people);
   });
   // A junior student requests to borrow Book9, then a senior student requests the same book too;
   // Only 1 copy of the book is available; the senior student gets the book after approval
-  it('Admin approves loan requests', function (){
-    Ola.borrow(['Book9']);
-    Olu.borrow(['Book9']);
+  it("Admin approves loan requests", function() {
+    Ola.borrow(["Book9"]);
+    Olu.borrow(["Book9"]);
     // console.log(db);
     var numberOfRequests = db.bookRequests.length;
     Admin.approve();
-    expect(Olu.borrowedBooks).toContain('Book9');
-    expect(Ola.borrowedBooks).not.toContain('Book9');
+    expect(Olu.borrowedBooks).toContain("Book9");
+    expect(Ola.borrowedBooks).not.toContain("Book9");
     expect(db.bookRequests.length).toBe(0);
-    console.log(db.people);
+    // console.log(db.people);
   });
   // No books are given out if there has been no approval of book requests; no other person than the librarian
   // can approve book requests.
-  it('Admin has not approved the loan requests, so no books are given out yet', function (){
-    Ola.borrow(['Book8']);
-    Olu.borrow(['Book8']);
+  it("Admin has not approved the loan requests, so no books are given out yet", function() {
+    Ola.borrow(["Book8"]);
+    Olu.borrow(["Book8"]);
     // console.log(db);
     var numberOfRequests = db.bookRequests.length;
     Uncle.approve();
-    expect(Olu.borrowedBooks).not.toContain('Book8');
-    expect(Ola.borrowedBooks).not.toContain('Book8');
+    expect(Olu.borrowedBooks).not.toContain("Book8");
+    expect(Ola.borrowedBooks).not.toContain("Book8");
     expect(db.bookRequests.length).not.toEqual(0);
-    console.log(db.people);
+    // console.log(db.people);
   });
 });
 
 // Only the librarian can the get the records of people from the database
-describe('Reading the database for records of people',function (){
-  it('Librarian can read the records of a person', function () {
-    expect(Admin.get(2).name).toContain('Olu');  
+describe("Reading the database for records of people", function() {
+  it("Librarian can read the records of a person", function() {
+    expect(Admin.get(2).name).toContain("Olu");
   });
-  it('others cannot read the records of a person', function () {
-    expect(Ola.get(2)).toContain('You do not have enough privileges'); 
-    expect(Olu.get(2)).toContain('You do not have enough privileges'); 
-    expect(Uncle.get(2)).toContain('You do not have enough privileges'); 
+  it("others cannot read the records of a person", function() {
+    expect(Ola.get(2)).toContain("You do not have enough privileges");
+    expect(Olu.get(2)).toContain("You do not have enough privileges");
+    expect(Uncle.get(2)).toContain("You do not have enough privileges");
   });
-  it('Librarian can read the records of all people', function () {
+  it("Librarian can read the records of all people", function() {
     expect(Admin.getAll().length).toBe(4);
   });
-  it('others cannot read the records of all people', function () {
-    expect(Ola.getAll()).toContain('You do not have enough privileges'); 
-    expect(Olu.getAll()).toContain('You do not have enough privileges'); 
-    expect(Uncle.getAll()).toContain('You do not have enough privileges'); 
+  it("others cannot read the records of all people", function() {
+    expect(Ola.getAll()).toContain("You do not have enough privileges");
+    expect(Olu.getAll()).toContain("You do not have enough privileges");
+    expect(Uncle.getAll()).toContain("You do not have enough privileges");
   });
 });
 
 // Only the librarian can update the records of people in the database
-describe('Updating records of people', function (){
-  it('Librarian updates the records of people; updates name and address of "Ola"', function(){
+describe("Updating records of people", function() {
+  it('Librarian updates the records of people; updates name and address of "Ola"', function() {
     // The Librarian updates the name and address of one of the people.
-    Admin.update(1, {name: 'Olar',address:'Maiduguri'});
+    Admin.update(1, { name: "Olar", address: "Maiduguri" });
     // console.log(db);
-    expect(Admin.get(1).name).toBe('Olar');
-    expect(Admin.get(1).address).toBe('Maiduguri');
+    expect(Admin.get(1).name).toBe("Olar");
+    expect(Admin.get(1).address).toBe("Maiduguri");
   });
-  it('other users cannot update the records of people', function(){
+  it("other users cannot update the records of people", function() {
     // The Librarian updates the name and address of one of the people.
-    expect(Uncle.update(2, {name: 'Olar',address:'Maiduguri'})).toEqual('You do not have enough privileges');
+    expect(Uncle.update(2, { name: "Olar", address: "Maiduguri" })).toEqual(
+      "You do not have enough privileges"
+    );
     // console.log(db);
-    expect(Admin.get(2).name).toBe('Olu');
-    expect(Admin.get(2).address).toBe('Abuja');
+    expect(Admin.get(2).name).toBe("Olu");
+    expect(Admin.get(2).address).toBe("Abuja");
   });
 });
 
 // Only the Librarian can delete the records of people in the database, whether he deletes single users or all of them.
-describe('Deleting records of people', function (){
-  it('Librarian deletes the record of Olar, but Teacher Uncle cannot delete any record', function(){
-    Admin.delete(1); 
+describe("Deleting records of people", function() {
+  it("Librarian deletes the record of Olar, but Teacher Uncle cannot delete any record", function() {
+    Admin.delete(1);
     // console.log(db);
     expect(Admin.get(1)).toBe(undefined);
-    Uncle.delete(2); 
+    Uncle.delete(2);
     // console.log(db);
-    expect(Admin.get(2).name).toBe('Olu'); 
+    expect(Admin.get(2).name).toBe("Olu");
   });
-  it('Librarian deletes all the records of people, but other users cannot ', function (){
+  it("Librarian deletes all the records of people, but other users cannot ", function() {
     // console.log(db);
     Admin.deleteAll();
     expect(db.people.length).toBe(0);
   });
-  it('Librarian deletes all the records of people, but other users cannot ', function (){
+  it("Librarian deletes all the records of people, but other users cannot ", function() {
     //Junior Student
-    var Ola = new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty');
-    var obj1 = {name: 'Ola',address:'Lagos', email: 'ola@gmail.com',password: 'qwerty',borrowedBooks: [],'cadre': 'JuniorStudent',Id: 1};
+    var Ola = new JuniorStudent("Ola", "Lagos", "ola@gmail.com", "qwerty");
+    var obj1 = {
+      name: "Ola",
+      address: "Lagos",
+      email: "ola@gmail.com",
+      password: "qwerty",
+      borrowedBooks: [],
+      cadre: "JuniorStudent",
+      Id: 1
+    };
     //Senior Student
-    var Olu = new SeniorStudent('Olu','Abuja','olu@gmail.com','qwerty1');
-    var obj2 = {name: 'Olu',address:'Abuja', email: 'olu@gmail.com',password: 'qwerty1',borrowedBooks: [],'cadre': 'SeniorStudent',Id: 2};
+    var Olu = new SeniorStudent("Olu", "Abuja", "olu@gmail.com", "qwerty1");
+    var obj2 = {
+      name: "Olu",
+      address: "Abuja",
+      email: "olu@gmail.com",
+      password: "qwerty1",
+      borrowedBooks: [],
+      cadre: "SeniorStudent",
+      Id: 2
+    };
     //Teacher
-    var Uncle = new Teacher('Uncle','Lokoja','uncle@gmail.com','qwerty2');
-    var obj3 = {name: 'Uncle',address:'Lokoja', email: 'uncle@gmail.com',password: 'qwerty2',borrowedBooks: [],'cadre': 'Teacher',Id: 3};
+    var Uncle = new Teacher("Uncle", "Lokoja", "uncle@gmail.com", "qwerty2");
+    var obj3 = {
+      name: "Uncle",
+      address: "Lokoja",
+      email: "uncle@gmail.com",
+      password: "qwerty2",
+      borrowedBooks: [],
+      cadre: "Teacher",
+      Id: 3
+    };
     //Admin
-    var Admin = new Librarian('Admin','Library','admin@gmail.com','jyndiqhxqi');
-    var obj4 = {name: 'Admin',address:'Library', email: 'admin@gmail.com',password: 'jyndiqhxqi',borrowedBooks: [],'cadre': 'Librarian',Id: 4};
-    
+    var Admin = new Librarian(
+      "Admin",
+      "Library",
+      "admin@gmail.com",
+      "jyndiqhxqi"
+    );
+    var obj4 = {
+      name: "Admin",
+      address: "Library",
+      email: "admin@gmail.com",
+      password: "jyndiqhxqi",
+      borrowedBooks: [],
+      cadre: "Librarian",
+      Id: 4
+    };
+
     Uncle.deleteAll();
 
     expect(db.people.length).toBe(4);
@@ -199,14 +270,14 @@ describe('Deleting records of people', function (){
 });
 
 // Search through the database for anybody whose name, address or email contained the search query
-describe('Search for a person', function () {
-  it('Admin searches through the database for records', function (){
+describe("Search for a person", function() {
+  it("Admin searches through the database for records", function() {
     // console.log(db);
-    expect(Admin.search('Ola').length).toBe(1);
-    expect(Admin.search('Ol').length).toBe(2); 
-    expect(Admin.search('ja').length).toBe(2); 
-    expect(Uncle.search('Ola').length).toBe(1);
-    expect(Uncle.search('Ol').length).toBe(2); 
-    expect(Uncle.search('ja').length).toBe(2); 
-  })
-})
+    expect(Admin.search("Ola").length).toBe(1);
+    expect(Admin.search("Ol").length).toBe(2);
+    expect(Admin.search("ja").length).toBe(2);
+    expect(Uncle.search("Ola").length).toBe(1);
+    expect(Uncle.search("Ol").length).toBe(2);
+    expect(Uncle.search("ja").length).toBe(2);
+  });
+});
