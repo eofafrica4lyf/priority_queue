@@ -6,6 +6,16 @@ const Librarian = function (name,address,email,password){
   Teacher.call(this,name,address,email,password);
   // identify as the Librarian
   this.cadre = 'Librarian';
+  // add the records of the Librarian to the database in a different record
+  db.admin.push({
+    'name': this.name,
+    'address': this.address,
+    'email': this.email,
+    'password': this.password,
+    'borrowedBooks': this.borrowedBooks,
+    'cadre': this.cadre,
+    'id': this.Id
+  });
 }
 // Inherit the prototype of the Teacher
 Librarian.prototype = Object.create(Teacher.prototype);

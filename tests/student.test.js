@@ -84,6 +84,8 @@ describe('Admin Creation', function () {
  * first and when a junior student is asking for the same book a senior student is asking for, the senior student comes first.)
  */
 describe('Admin Approval', function () {
+  // A junior student requests to borrow Book9, then a teacher requests the same book too;
+  // Only 1 copy of the book is available; the teacher gets the book after approval
   it('Admin approves loan requests', function (){
     Ola.borrow(['Book7']);
     Uncle.borrow(['Book7']);
@@ -95,6 +97,8 @@ describe('Admin Approval', function () {
     expect(db.bookRequests.length).toBe(0);
     // console.log(db.people);
   });
+  // A junior student requests to borrow Book9, then a senior student requests the same book too;
+  // Only 1 copy of the book is available; the senior student gets the book after approval
   it('Admin approves loan requests', function (){
     Ola.borrow(['Book9']);
     Olu.borrow(['Book9']);
@@ -106,6 +110,8 @@ describe('Admin Approval', function () {
     expect(db.bookRequests.length).toBe(0);
     console.log(db.people);
   });
+  // No books are given out if there has been no approval of book requests; no other person than the librarian
+  // can approve book requests.
   it('Admin has not approved the loan requests, so no books are given out yet', function (){
     Ola.borrow(['Book8']);
     Olu.borrow(['Book8']);
@@ -119,6 +125,7 @@ describe('Admin Approval', function () {
   });
 });
 
+// Only the librarian can the get the records of people from the database
 describe('Reading the database for records of people',function (){
   it('Librarian can read the records of a person', function () {
     expect(Admin.get(2).name).toContain('Olu');  
@@ -138,6 +145,7 @@ describe('Reading the database for records of people',function (){
   });
 });
 
+// Only the librarian can update the records of people in the database
 describe('Updating records of people', function (){
   it('Librarian updates the records of people; updates name and address of "Ola"', function(){
     // The Librarian updates the name and address of one of the people.
@@ -155,6 +163,7 @@ describe('Updating records of people', function (){
   });
 });
 
+// Only the Librarian can delete the records of people in the database, whether he deletes single users or all of them.
 describe('Deleting records of people', function (){
   it('Librarian deletes the record of Olar, but Teacher Uncle cannot delete any record', function(){
     Admin.delete(1); 
@@ -189,6 +198,7 @@ describe('Deleting records of people', function (){
   });
 });
 
+// Search through the database for anybody whose name, address or email contained the search query
 describe('Search for a person', function () {
   it('Admin searches through the database for records', function (){
     // console.log(db);
