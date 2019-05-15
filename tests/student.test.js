@@ -40,16 +40,17 @@ describe('Student/Teacher creation',function(){
 });
 
 describe('Borrowing a Book',function(){
-  it('Test that a book was borrowed',function(){
+  it('Test that a book was borrowed but Admin has not yet approved',function(){
     Ola.borrow(['Book2']);
     Uncle.borrow(['Book1']);
     // console.log(db);
-    expect(db.books.Book2).toEqual(1);
-    expect(Ola.borrowedBooks).toEqual(['Book2']);  
+    // Admin has not yet approved
+    expect(db.books.Book2).toEqual(2);
+    expect(Ola.borrowedBooks).not.toEqual(['Book2']);  
   });
   it('Test that a teacher has greater priority than a student',function (){
     Ola.borrow(['Book4']);
-    console.log(db.bookRequests[db.bookRequests.length-1].priority);
+    // console.log(db.bookRequests[db.bookRequests.length-1].priority);
     expect(db.bookRequests[db.bookRequests.length-1].priority).toBe(1); 
     Uncle.borrow(['Book4']);
     
@@ -70,6 +71,9 @@ describe('Admin Approval', function () {
   it('Admin approves loan requests', function (){
     Ola.borrow(['Book7']);
     Uncle.borrow(['Book7']);
+    // console.log(db);
+    Admin.approve();
     expect(Uncle.borrowedBooks).toContain('Book7');
+    expect(Ola.borrowedBooks).not.toContain('Book7');
   });
 });
