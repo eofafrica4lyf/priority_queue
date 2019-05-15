@@ -80,6 +80,10 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
   var index = db.people.indexOf(record);
   return db.people.splice(index,1); 
  }
+
+ JuniorStudent.prototype.deleteAll = function () {
+   
+ }
 // console.log(JuniorStudent.getPrototypeOf());
 // console.log(new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty','J'));
 module.exports = JuniorStudent;

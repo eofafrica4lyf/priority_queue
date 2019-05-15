@@ -123,4 +123,8 @@ describe('Deleting records of people', function (){
     // console.log(db);
     expect(Admin.get(2).name).toBe('Olu'); 
   });
+  it('Librarian deletes all the records of people, but other users cannot ', function (){
+    Admin.deleteAll();
+    expect(db.people.length).toBe(0);
+  });
 });
