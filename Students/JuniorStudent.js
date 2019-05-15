@@ -45,11 +45,16 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
  }
 
  JuniorStudent.prototype.get = function (ID) {
-  for(var index = 0;index < db.people.length;index++){
-    if(db.people[index].id === ID){
-        return db.people[index];
-    }
+  if(this.cadre === 'Librarian'){
+    for(var index = 0;index < db.people.length;index++){
+        if(db.people[index].id === ID){
+            return db.people[index];
+        }
+      }
+  }else {
+    return 'You do not have enough privileges';
   }
+  
  }
 // console.log(JuniorStudent.getPrototypeOf());
 // console.log(new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty','J'));
