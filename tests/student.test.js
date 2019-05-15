@@ -2,6 +2,7 @@ const db = require('../db')
 const JuniorStudent = require('../Students/JuniorStudent');
 const SeniorStudent = require('../Students/SeniorStudent');
 const Teacher = require('../Teachers/Teacher');
+const Librarian = require('../Librarian/Librarian');
 
 //Junior Student
 var Ola = new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty');
@@ -13,7 +14,8 @@ var obj2 = {name: 'Olu',address:'Abuja', email: 'olu@gmail.com',password: 'qwert
 var Uncle = new Teacher('Uncle','Lokoja','uncle@gmail.com','qwerty2');
 var obj3 = {name: 'Uncle',address:'Lokoja', email: 'uncle@gmail.com',password: 'qwerty2',borrowedBooks: [],'cadre': 'Teacher',Id: 3}
 //Admin
-var Admin
+var Admin = new Librarian('Admin','Library','admin@gmail.com','jyndiqhxqi');
+var obj4 = {name: 'Admin',address:'Library', email: 'admin@gmail.com',password: 'jyndiqhxqi',borrowedBooks: [],'cadre': 'Librarian',Id: 4}
 
 
 describe('Student/Teacher creation',function(){
@@ -54,3 +56,9 @@ describe('Borrowing a Book',function(){
     expect(db.bookRequests[db.bookRequests.length-1].priority).toBe(1); 
   })
 });
+
+describe('Admin Creation', function () {
+  it('Test that we have a librarian', function () {
+    expect(Admin).toEqual(obj4);
+  })
+})
