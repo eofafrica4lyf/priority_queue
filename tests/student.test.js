@@ -79,7 +79,12 @@ describe('Admin Approval', function () {
 });
 
 describe('Reading a person',function (){
-  it('Librarian reads a junior student', function () {
+  it('Librarian can read the records of a junior student', function () {
     expect(Uncle.get(2).name).toContain('Olu'); 
+  });
+  it('others cannot read the records of a junior student', function () {
+    expect(Ola.get(2)).toContain('You do not have enough privileges'); 
+    expect(Olu.get(2)).toContain('You do not have enough privileges'); 
+    expect(Uncle.get(2)).toContain('You do not have enough privileges'); 
   });
 })
