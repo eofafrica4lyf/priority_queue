@@ -54,7 +54,10 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
   }else {
     return 'You do not have enough privileges';
   }
-  
+ }
+
+ JuniorStudent.prototype.getAll = function (){
+   return db.people;
  }
 // console.log(JuniorStudent.getPrototypeOf());
 // console.log(new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty','J'));
