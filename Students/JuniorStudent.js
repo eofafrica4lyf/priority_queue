@@ -76,7 +76,9 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
  }
 
  JuniorStudent.prototype.delete = function (ID){
-  
+  var record = this.get(ID);
+  var index = db.people.indexOf(record);
+  return db.people.splice(index,1); 
  }
 // console.log(JuniorStudent.getPrototypeOf());
 // console.log(new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty','J'));
