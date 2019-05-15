@@ -95,4 +95,13 @@ describe('Reading the database for records of people',function (){
     expect(Olu.getAll()).toContain('You do not have enough privileges'); 
     expect(Uncle.getAll()).toContain('You do not have enough privileges'); 
   });
+});
+
+describe('Updating records of people', function (){
+  it('Librarian updates the records of people; updates name and address of "Ola"', function(){
+    // The Librarian updates the name and address of one of the people.
+    Admin.update(1, {name: 'Olar',address:'Maiduguri'});
+    expect(Admin.get(1).name).toBe('Olar');
+    expect(Admin.get(1).address).toBe('Maidiguri');
+  });
 })
