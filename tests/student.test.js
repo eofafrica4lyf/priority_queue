@@ -114,7 +114,7 @@ describe('Admin Approval', function () {
     Uncle.approve();
     expect(Olu.borrowedBooks).not.toContain('Book8');
     expect(Ola.borrowedBooks).not.toContain('Book8');
-    expect(db.bookRequests.length).toBe(0);
+    expect(db.bookRequests.length).not.toEqual(0);
     console.log(db.people);
   });
 });

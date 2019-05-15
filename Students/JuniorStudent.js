@@ -126,5 +126,9 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
   }
   return searchResult;
  }
+// dummy approve function for every user that is not a librarian
+ JuniorStudent.prototype.approve = function () {
+   return 'You do not have enough privileges';
+ }
 
 module.exports = JuniorStudent;
