@@ -141,9 +141,15 @@ describe('Deleting records of people', function (){
     //Admin
     var Admin = new Librarian('Admin','Library','admin@gmail.com','jyndiqhxqi');
     var obj4 = {name: 'Admin',address:'Library', email: 'admin@gmail.com',password: 'jyndiqhxqi',borrowedBooks: [],'cadre': 'Librarian',Id: 4};
-    console.log(db);
+    
     Uncle.deleteAll();
-    console.log(db);
+
     expect(db.people.length).toBe(4);
   });
 });
+
+describe('Search for a person', function () {
+  it('Admin searches through all user names ', function (){
+    expect(Admin.search('Ola').name).toContain(obj1);
+  })
+})
