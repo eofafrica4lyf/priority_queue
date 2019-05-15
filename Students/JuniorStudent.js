@@ -57,7 +57,7 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
  }
 
  JuniorStudent.prototype.getAll = function (){
-   return db.people;
+  return db.people;
  }
 // console.log(JuniorStudent.getPrototypeOf());
 // console.log(new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty','J'));
