@@ -1,3 +1,4 @@
+// require all necessary files
 const db = require('../db')
 const JuniorStudent = require('../Students/JuniorStudent');
 const SeniorStudent = require('../Students/SeniorStudent');
@@ -17,7 +18,9 @@ var obj3 = {name: 'Uncle',address:'Lokoja', email: 'uncle@gmail.com',password: '
 var Admin = new Librarian('Admin','Library','admin@gmail.com','jyndiqhxqi');
 var obj4 = {name: 'Admin',address:'Library', email: 'admin@gmail.com',password: 'jyndiqhxqi',borrowedBooks: [],'cadre': 'Librarian',Id: 4};
 
-
+/**
+ * Testing that the creation of each time of person is successful; whether they are Junior Students, Senior Students or Teachers
+ */
 describe('Student/Teacher creation',function(){
   it('Test that a junior student is created',function(){
     expect(Ola).toEqual(obj1);
@@ -39,6 +42,10 @@ describe('Student/Teacher creation',function(){
   });
 });
 
+/**
+ * Testing that the borrow process was initialized and that bookRequests are updated in the database and arranged 
+ * in the order of priority...
+ */
 describe('Borrowing a Book',function(){
   it('Test that a book was borrowed but Admin has not yet approved',function(){
     Ola.borrow(['Book2']);
@@ -59,6 +66,9 @@ describe('Borrowing a Book',function(){
   })
 });
 
+/**
+ * Test that a Librarian was created.
+ */
 describe('Admin Creation', function () {
   it('Test that we have a librarian', function () {
     expect(Admin).toEqual(obj4);
@@ -68,6 +78,11 @@ describe('Admin Creation', function () {
   });
 });
 
+/**
+ * Test that the Admin approves and only he can approve the requests: he approves the requests in the order
+ * of priority(when a teacher is requesting for the same book a student is requesting for, the teacher comes 
+ * first and when a junior student is asking for the same book a senior student is asking for, the senior student comes first.)
+ */
 describe('Admin Approval', function () {
   it('Admin approves loan requests', function (){
     Ola.borrow(['Book7']);
@@ -78,6 +93,29 @@ describe('Admin Approval', function () {
     expect(Uncle.borrowedBooks).toContain('Book7');
     expect(Ola.borrowedBooks).not.toContain('Book7');
     expect(db.bookRequests.length).toBe(0);
+    // console.log(db.people);
+  });
+  it('Admin approves loan requests', function (){
+    Ola.borrow(['Book9']);
+    Olu.borrow(['Book9']);
+    // console.log(db);
+    var numberOfRequests = db.bookRequests.length;
+    Admin.approve();
+    expect(Olu.borrowedBooks).toContain('Book9');
+    expect(Ola.borrowedBooks).not.toContain('Book9');
+    expect(db.bookRequests.length).toBe(0);
+    console.log(db.people);
+  });
+  it('Admin has not approved the loan requests, so no books are given out yet', function (){
+    Ola.borrow(['Book8']);
+    Olu.borrow(['Book8']);
+    // console.log(db);
+    var numberOfRequests = db.bookRequests.length;
+    Uncle.approve();
+    expect(Olu.borrowedBooks).not.toContain('Book8');
+    expect(Ola.borrowedBooks).not.toContain('Book8');
+    expect(db.bookRequests.length).toBe(0);
+    console.log(db.people);
   });
 });
 
@@ -153,7 +191,7 @@ describe('Deleting records of people', function (){
 
 describe('Search for a person', function () {
   it('Admin searches through the database for records', function (){
-    console.log(db);
+    // console.log(db);
     expect(Admin.search('Ola').length).toBe(1);
     expect(Admin.search('Ol').length).toBe(2); 
     expect(Admin.search('ja').length).toBe(2); 

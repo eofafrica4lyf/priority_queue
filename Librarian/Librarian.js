@@ -2,10 +2,12 @@ const db = require('../db')
 const Teacher = require('../Teachers/Teacher');
 
 const Librarian = function (name,address,email,password){
+  // inherit the constructor of the Teacher
   Teacher.call(this,name,address,email,password);
+  // identify as the Librarian
   this.cadre = 'Librarian';
 }
-
+// Inherit the prototype of the Teacher
 Librarian.prototype = Object.create(Teacher.prototype);
 Librarian.prototype.constructor = Librarian;
 
@@ -20,8 +22,5 @@ Librarian.prototype.approve = function (){
   }
   db.bookRequests.length = 0;
 };
-
-
-// console.log(new Librarian('Admin','Library','admin@gmail.com','jyndiqhxqi'));
 
 module.exports = Librarian;
