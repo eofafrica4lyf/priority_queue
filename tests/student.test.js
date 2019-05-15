@@ -73,9 +73,11 @@ describe('Admin Approval', function () {
     Ola.borrow(['Book7']);
     Uncle.borrow(['Book7']);
     // console.log(db);
+    var numberOfRequests = db.bookRequests.length;
     Admin.approve();
     expect(Uncle.borrowedBooks).toContain('Book7');
     expect(Ola.borrowedBooks).not.toContain('Book7');
+    expect(db.bookRequests.length).toBe(0);
   });
 });
 
