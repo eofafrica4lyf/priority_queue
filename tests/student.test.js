@@ -42,6 +42,7 @@ describe('Student/Teacher creation',function(){
 describe('Borrowing a Book',function(){
   it('Test that a book was borrowed but Admin has not yet approved',function(){
     Ola.borrow(['Book2']);
+    Olu.borrow(['Book2']);
     Uncle.borrow(['Book1']);
     // console.log(db);
     // Admin has not yet approved

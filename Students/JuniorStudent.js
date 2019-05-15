@@ -33,11 +33,13 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
     var priority = 0;
     if(this.cadre === 'JuniorStudent'){
      priority = 1;
-    }else if(this.cadre === 'SeniorStudent'){
+    };
+    if(this.cadre === 'SeniorStudent'){
     priority = 2;
-    }else if(this.cadre === 'Teacher'){
+    };
+    if(this.cadre === 'Teacher'){
     priority = 3;
-    }
+    };
     // add the record of priority for the loan request; which was formerly not there.
    loan.priority = priority;
   // add records of the book request to the database
@@ -92,14 +94,14 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
  JuniorStudent.prototype.search = function(searchTerm){
   var regex = new RegExp(searchTerm);
   var searchResult = [];
-  console.log(searchTerm,regex);
+  // console.log(searchTerm,regex);
   for(index = 0; index < db.people.length; index++){
-    console.log(regex.test(db.people[index].name), db.people[index].name);
+    // console.log(regex.test(db.people[index].name), db.people[index].name);
     if(regex.test(db.people[index].name) || regex.test(db.people[index].address) || regex.test(db.people[index].email)){
       searchResult.push(db.people[index]);
     }
   }
-  console.log(searchResult);
+  // console.log(searchResult);
   return searchResult;
  }
 // console.log(JuniorStudent.getPrototypeOf());
