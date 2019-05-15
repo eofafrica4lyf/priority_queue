@@ -79,7 +79,7 @@ describe('Admin Approval', function () {
 });
 
 describe('Reading a person',function (){
-  it('Read a junior student', function () {
-    expect(Ola.get(1)).toEqual(obj1);
+  it('Librarian reads a junior student', function () {
+    expect(Uncle.get(2).name).toContain('Olu'); 
   });
 })

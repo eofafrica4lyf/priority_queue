@@ -19,7 +19,7 @@ const JuniorStudent = function (name,address,email,password){
     'email': this.email,
     'password': this.password,
     'borrowedBooks': this.borrowedBooks,
-    'studentId': this.Id
+    'id': this.Id
   });
 }
 /* Initiate the borrowing of a book from the library
@@ -41,16 +41,15 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
    loan.priority = priority;
   // add records of the book request to the database
     loan.addRequest();
-  // console.log(loan.addRequest());
-  // console.log(db);
-   // Loan request is granted and records are updated
-  //  db.books[booksBorrowed[0]]--;
-   // The newly borrowed book is added to the records of the person.
-  //  this.borrowedBooks.push(booksBorrowed[0]);
-   // The records of the book request are removed since they have been evaluated
-  //  console.log(db);
-
    return loan;   
+ }
+
+ JuniorStudent.prototype.get = function (ID) {
+  for(var index = 0;index < db.people.length;index++){
+    if(db.people[index].id === ID){
+        return db.people[index];
+    }
+  }
  }
 // console.log(JuniorStudent.getPrototypeOf());
 // console.log(new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty','J'));
