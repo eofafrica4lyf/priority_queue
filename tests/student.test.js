@@ -65,3 +65,11 @@ describe('Admin Creation', function () {
     expect(Admin.constructor).toEqual(Librarian); 
   });
 });
+
+describe('Admin Approval', function () {
+  it('Admin approves loan requests', function (){
+    Ola.borrow(['Book7']);
+    Uncle.borrow(['Book7']);
+    expect(Uncle.borrowedBooks).toContain('Book7');
+  });
+});
