@@ -71,7 +71,7 @@ describe('Admin Approval', function () {
   it('Admin approves loan requests', function (){
     Ola.borrow(['Book7']);
     Uncle.borrow(['Book7']);
-    console.log(db);
+    // console.log(db);
     Admin.approve();
     expect(Uncle.borrowedBooks).toContain('Book7');
     expect(Ola.borrowedBooks).not.toContain('Book7');
@@ -101,7 +101,8 @@ describe('Updating records of people', function (){
   it('Librarian updates the records of people; updates name and address of "Ola"', function(){
     // The Librarian updates the name and address of one of the people.
     Admin.update(1, {name: 'Olar',address:'Maiduguri'});
+    console.log(db);
     expect(Admin.get(1).name).toBe('Olar');
-    expect(Admin.get(1).address).toBe('Maidiguri');
+    expect(Admin.get(1).address).toBe('Maiduguri');
   });
-})
+});
