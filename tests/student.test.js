@@ -115,9 +115,14 @@ describe('Updating records of people', function (){
 });
 
 describe('Deleting records of people', function (){
-  it('Delete the record of Olar', function(){
+  it('Librarian deletes the record of Olar', function(){
     Admin.delete(1); 
-    console.log(db);
+    // console.log(db);
     expect(Admin.get(1)).toBe(undefined);
+  });
+  it('Teacher Uncle cannot delete any record', function(){
+    Uncle.delete(2); 
+    console.log(db);
+    expect(Admin.get(2).name).toBe('Olu'); 
   });
 });
