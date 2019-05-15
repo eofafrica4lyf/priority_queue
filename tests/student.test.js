@@ -154,5 +154,8 @@ describe('Search for a person', function () {
     expect(Admin.search('Ola').length).toBe(1);
     expect(Admin.search('Ol').length).toBe(2); 
     expect(Admin.search('ja').length).toBe(2); 
+    expect(Uncle.search('Ola').length).toBe(1);
+    expect(Uncle.search('Ol').length).toBe(2); 
+    expect(Uncle.search('ja').length).toBe(2); 
   })
 })
