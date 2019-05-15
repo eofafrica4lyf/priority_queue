@@ -71,9 +71,15 @@ describe('Admin Approval', function () {
   it('Admin approves loan requests', function (){
     Ola.borrow(['Book7']);
     Uncle.borrow(['Book7']);
-    // console.log(db);
+    console.log(db);
     Admin.approve();
     expect(Uncle.borrowedBooks).toContain('Book7');
     expect(Ola.borrowedBooks).not.toContain('Book7');
   });
 });
+
+describe('Reading a person',function (){
+  it('Read a junior student', function () {
+    expect(Ola.get(1)).toEqual(obj1);
+  });
+})
