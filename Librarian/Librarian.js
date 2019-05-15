@@ -7,7 +7,7 @@ const Librarian = function (name,address,email,password){
 }
 
 Librarian.prototype = Object.create(Teacher.prototype);
-Librarian.prototype.constructor = Teacher;
+Librarian.prototype.constructor = Librarian;
 
 // console.log(new Librarian('Admin','Library','admin@gmail.com','jyndiqhxqi'));
 

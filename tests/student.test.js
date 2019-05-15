@@ -60,5 +60,8 @@ describe('Borrowing a Book',function(){
 describe('Admin Creation', function () {
   it('Test that we have a librarian', function () {
     expect(Admin).toEqual(obj4);
-  })
-})
+  });
+  it('Test that a Librarian is created',function(){
+    expect(Admin.constructor).toEqual(Librarian); 
+  });
+});
