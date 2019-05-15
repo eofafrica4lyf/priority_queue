@@ -108,8 +108,16 @@ describe('Updating records of people', function (){
   it('other users cannot update the records of people', function(){
     // The Librarian updates the name and address of one of the people.
     expect(Uncle.update(2, {name: 'Olar',address:'Maiduguri'})).toEqual('You do not have enough privileges');
-    console.log(db);
+    // console.log(db);
     expect(Admin.get(2).name).toBe('Olu');
     expect(Admin.get(2).address).toBe('Abuja');
+  });
+});
+
+describe('Deleting records of people', function (){
+  it('Delete the record of Olar', function(){
+    Admin.delete(1); 
+    // console.log(db);
+    expect(Admin.get(1)).toBe(undefined);
   });
 });

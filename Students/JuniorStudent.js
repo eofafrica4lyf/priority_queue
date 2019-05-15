@@ -74,6 +74,10 @@ JuniorStudent.prototype.borrow = function (booksBorrowed) {
     return 'You do not have enough privileges';
   }
  }
+
+ JuniorStudent.prototype.delete = function (ID){
+  
+ }
 // console.log(JuniorStudent.getPrototypeOf());
 // console.log(new JuniorStudent('Ola','Lagos','ola@gmail.com','qwerty','J'));
 module.exports = JuniorStudent;
