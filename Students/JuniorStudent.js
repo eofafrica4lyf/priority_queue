@@ -1,9 +1,9 @@
-const db = require("../db");
-const Borrow = require("../Borrow/Borrow.js");
+const db = require('../db');
+const Borrow = require('../Borrow/Borrow.js');
 // Define a global variable to help with auto-incrementation of student ID
 global.counter = 1;
 
-//constructor function for creation of a junior student
+// constructor function for creation of a junior student
 const JuniorStudent = function(name, address, email, password) {
   this.name = name;
   this.address = address;

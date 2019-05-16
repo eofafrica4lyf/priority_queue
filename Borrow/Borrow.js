@@ -1,4 +1,4 @@
-const db = require("../db");
+const db = require('../db');
 // Define a global variable to help with auto-incrementation of ID of loan records
 global.bookId = 1;
 // Constructor function that initializes the process of borrowing a book by a user

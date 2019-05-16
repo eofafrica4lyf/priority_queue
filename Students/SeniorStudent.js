@@ -1,4 +1,4 @@
-const JuniorStudent = require("../Students/JuniorStudent");
+const JuniorStudent = require('../Students/JuniorStudent');
 
 const SeniorStudent = function(name, address, email, password) {
   // inherit the constructor of the junior student
