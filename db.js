@@ -20,9 +20,4 @@ const db = {
   },
   bookRequests: []
 };
-<<<<<<< HEAD
-
-=======
-// console.log(db);
->>>>>>> d410ae530886100a3a06b03ced300925b900b0e0
 module.exports = db;
